@@ -23,7 +23,7 @@ void handler(int signal){
 	
 	//----- OPEN THE I2C BUS -----
 int main(void){
-
+	int comprobacion;
 	int file_i2c; 
 	int addr = 0x5c;  //The I2C address of the slave
 	char letra;
@@ -62,7 +62,8 @@ int main(void){
 			while(run){
 			
 			
-				write(file_i2c, NULL, 0);			//Step 1, wakeup
+				comprobacion=write(file_i2c, NULL, 0);			//Step 1, wakeup
+				printf("%d",comprobacion);
 				usleep(1000);
 
 				buf[0]=0x03;				//Get humidity and temperature // para leer registros
@@ -95,7 +96,4 @@ int main(void){
 	return 0;
 
 }
-
-
-printf("%" PRIu64 "\n", sumDistanceSquared[i]); //Para pintar 64 bits sin signo
 
